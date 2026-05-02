@@ -1,36 +1,68 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    display: flex;
+}
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #111;
+    color: white;
+    padding: 20px;
+}
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+.sidebar a:hover {
+    background: #222;
+    color: white;
+}
+
+/* Contenido */
+.content {
+    flex: 1;
+    padding: 20px;
+    background: #f5f5f5;
+}
+</style>
+
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>MENU</h2>
+    
+
+    <a href="{{ route('clientes.index') }}">📋 Clientes</a>
+    <a href="{{ route('clientes.create') }}">➕ Crear Cliente</a>
+    <a href="#">📊 Reportes</a>
+    <a href="#">⚙️ Configuración</a>
+</div>
+
+<div class="content">
+    @yield('content')
+</div>
+
+</body>
 </html>
