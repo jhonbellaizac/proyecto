@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClienteController;
-use App\Models\Cliente;
+use App\Http\Controllers\ProductoController;
+use App\Models\Producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/menu', function () {
  //   return view('dashboard');
- $clientes = Cliente::all();
- return view('dashboard',compact ('clientes'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+ $productos = Producto::all();
+ return view('dashboard',compact ('productos'));
+})->middleware(['auth', 'verified'])->name('menu');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('clientes',ClienteController::class);
+Route::resource('productos',ProductoController::class);
 
 require __DIR__.'/auth.php';
