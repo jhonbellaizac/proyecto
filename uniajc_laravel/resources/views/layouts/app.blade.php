@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Panel</title>
 
@@ -83,8 +84,9 @@
         <div class="menu-links">
             <a href="{{ route('productos.index') }}">📦 Productos</a>
             <a href="{{ route('productos.create') }}">➕ Crear Producto</a>
-            <a href="#">📊 Reportes</a>
-            <a href="#">⚙️ Configuración</a>
+            <a href="{{ route('config.index') }}"> Configuración</a>
+            
+</a>
         </div>
 
         <form method="POST" action="{{ route('logout') }}" class="logout">
@@ -95,9 +97,9 @@
         </form>
     </div>
 
-    <div class="content">
+    <div class="content" style="margin-left: 250px; padding: 20px;">
         @yield('content')
     </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
