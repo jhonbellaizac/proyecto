@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Http\Controllers\ConfiguracionController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,10 @@ use App\Models\Categoria;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
+    Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('config.index');
+    Route::post('/configuracion', [ConfiguracionController::class, 'update'])->name('config.update');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,5 +41,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('productos',ProductoController::class);
+Route::get('/productos/create', [ProductoController::class, 'create'])->name('productos.create');
 
 require __DIR__.'/auth.php';

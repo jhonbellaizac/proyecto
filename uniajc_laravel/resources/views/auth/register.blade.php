@@ -34,8 +34,8 @@
                     <select name="role"
                         class="w-full mt-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
                         <option value="user">Usuario</option>
-                        <option value="admin">Administrador</option>
                     </select>
+                    <p class="text-xs text-gray-500 mt-1">Solo administradores pueden asignar roles superiores</p>
                 </div>
 
                 <!-- Password -->

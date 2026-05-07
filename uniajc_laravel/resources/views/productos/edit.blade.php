@@ -75,6 +75,7 @@
                                         <input type="number" step="0.01" name="precio"
                                             class="form-control"
                                             value="{{ old('precio', $producto->precio) }}"
+                                            min="0"
                                             required>
                                         <label>Precio</label>
                                     </div>
@@ -85,6 +86,7 @@
                                         <input type="number" name="stock"
                                             class="form-control"
                                             value="{{ old('stock', $producto->stock) }}"
+                                            min="0"
                                             required>
                                         <label>Cantidad en Stock</label>
                                     </div>
