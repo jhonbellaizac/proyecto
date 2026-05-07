@@ -19,7 +19,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'LAP-GAM-001',
                 'precio' => 2500000.00,
                 'stock' => 15,
-                'categoria_id' => 1, // Electrónicos
+                'id_categoria' => 1, // Electrónicos
                 'descripcion' => 'Laptop gaming de alto rendimiento con procesador Intel i7, 16GB RAM, 512GB SSD y tarjeta gráfica RTX 3060'
             ],
             [
@@ -27,7 +27,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'SPH-SAM-002',
                 'precio' => 1800000.00,
                 'stock' => 25,
-                'categoria_id' => 1, // Electrónicos
+                'id_categoria' => 1, // Electrónicos
                 'descripcion' => 'Smartphone Samsung Galaxy S23 con pantalla AMOLED 6.1", 256GB almacenamiento y cámara de 50MP'
             ],
             [
@@ -35,7 +35,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'CAM-NIK-003',
                 'precio' => 85000.00,
                 'stock' => 50,
-                'categoria_id' => 2, // Ropa y Accesorios
+                'id_categoria' => 2, // Ropa y Accesorios
                 'descripcion' => 'Camiseta deportiva Nike Dri-FIT de poliéster transpirable, talla M, color azul'
             ],
             [
@@ -43,7 +43,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'OLL-TRA-004',
                 'precio' => 320000.00,
                 'stock' => 12,
-                'categoria_id' => 3, // Hogar y Jardín
+                'id_categoria' => 3, // Hogar y Jardín
                 'descripcion' => 'Set de 7 piezas de ollas Tramontina con revestimiento antiadherente, incluye sartenes y cacerolas'
             ],
             [
@@ -51,7 +51,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'BAL-ADI-005',
                 'precio' => 120000.00,
                 'stock' => 30,
-                'categoria_id' => 4, // Deportes y Recreación
+                'id_categoria' => 4, // Deportes y Recreación
                 'descripcion' => 'Balón de fútbol Adidas Tango tamaño 5, oficial FIFA, color blanco con negro'
             ],
             [
@@ -59,7 +59,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'LIB-LAR-006',
                 'precio' => 45000.00,
                 'stock' => 20,
-                'categoria_id' => 5, // Libros y Educación
+                'id_categoria' => 5, // Libros y Educación
                 'descripcion' => 'Libro completo sobre desarrollo web con Laravel, incluye ejemplos prácticos y proyectos'
             ],
             [
@@ -67,7 +67,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'CRE-NIV-007',
                 'precio' => 25000.00,
                 'stock' => 40,
-                'categoria_id' => 6, // Salud y Belleza
+                'id_categoria' => 6, // Salud y Belleza
                 'descripcion' => 'Crema hidratante Nivea para piel seca, 200ml, con vitamina E y aceite de jojoba'
             ],
             [
@@ -75,7 +75,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'ACE-MOT-008',
                 'precio' => 65000.00,
                 'stock' => 35,
-                'categoria_id' => 7, // Automotriz
+                'id_categoria' => 7, // Automotriz
                 'descripcion' => 'Aceite sintético para motor 5W30, grado API SN, botella de 1 litro, compatible con motores a gasolina'
             ],
             [
@@ -83,7 +83,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'TAL-BOS-009',
                 'precio' => 280000.00,
                 'stock' => 8,
-                'categoria_id' => 8, // Herramientas
+                'id_categoria' => 8, // Herramientas
                 'descripcion' => 'Taladro inalámbrico Bosch GSB 18V-60, 2 velocidades, incluye batería y cargador'
             ],
             [
@@ -91,7 +91,7 @@ class ProductoSeeder extends Seeder
                 'codigo' => 'AUD-SON-010',
                 'precio' => 350000.00,
                 'stock' => 18,
-                'categoria_id' => 1, // Electrónicos
+                'id_categoria' => 1, // Electrónicos
                 'descripcion' => 'Audífonos inalámbricos Sony WH-1000XM4 con cancelación de ruido activa y 30 horas de batería'
             ]
         ];

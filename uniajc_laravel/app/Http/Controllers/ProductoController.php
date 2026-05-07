@@ -30,7 +30,7 @@ class ProductoController extends Controller
                 'codigo' => 'required|unique:producto,codigo',
                 'precio' => 'required|numeric|min:0',
                 'stock' => 'required|integer|min:0',
-                'categoria_id' => 'required|exists:categorias,id'
+                'id_categoria' => 'required|exists:categorias,id'
             ],
             [
                 'precio.min' => 'El precio no puede ser negativo.',
@@ -46,6 +46,10 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto creado correctamente');
+    }
+    public function show($id)
+    {
+        return redirect()->route('productos.index');
     }
 
     public function edit($id)
@@ -63,18 +67,18 @@ class ProductoController extends Controller
         $request->validate(
             [
                 'nombre' => 'required',
-                'codigo' => 'required|unique:productos,codigo,' . $producto->id,
+                'codigo' => 'required|unique:producto,codigo,' . $producto->id_producto . ',id_producto',
                 'precio' => 'required|numeric|min:0',
                 'stock' => 'required|integer|min:0',
-                'categoria_id' => 'required|exists:categorias,id'
+                'id_categoria' => 'required|exists:categorias,id'
             ],
             [
                 'precio.min' => 'El precio no puede ser negativo.',
                 'stock.min' => 'El stock no puede ser negativo.',
                 'codigo.unique' => 'El código ya existe. Usa otro código único.',
                 'codigo.required' => 'El campo código es obligatorio.',
-                'categoria_id.exists' => 'La categoría seleccionada no es válida.',
-                'categoria_id.required' => 'Debes seleccionar una categoría.',
+                'id_categoria.exists' => 'La categoría seleccionada no es válida.',
+                'id_categoria.required' => 'Debes seleccionar una categoría.',
             ]
         );
 
@@ -91,10 +95,4 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')
             ->with('success', 'Producto eliminado');
     }
-
-    public function categoria()
-{
-    return $this->belongsTo(Categoria::class);
-}
-
 }

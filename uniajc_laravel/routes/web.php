@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 Route::get('/menu', function () {
  //   return view('dashboard');
- $productos = Producto::all();
+ $productos = Producto::with('categoria')->get();
  return view('dashboard',compact ('productos'));
 })->middleware(['auth', 'verified'])->name('menu');
 
@@ -41,6 +41,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('productos',ProductoController::class);
-Route::get('/productos/create', [ProductoController::class, 'create'])->name('productos.create');
 
 require __DIR__.'/auth.php';
