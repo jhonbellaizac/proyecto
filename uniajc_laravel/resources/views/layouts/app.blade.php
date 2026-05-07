@@ -85,8 +85,6 @@
             <a href="{{ route('productos.index') }}">📦 Productos</a>
             <a href="{{ route('productos.create') }}">➕ Crear Producto</a>
             <a href="{{ route('config.index') }}"> Configuración</a>
-            
-</a>
         </div>
 
         <form method="POST" action="{{ route('logout') }}" class="logout">

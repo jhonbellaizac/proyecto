@@ -79,11 +79,12 @@
 
                         {{-- CATEGORÍA --}}
                         <div class="form-floating mb-3">
-                            <select name="categoria_id" class="form-select" required>
+                            <select name="id_categoria" class="form-select" required>
                                 <option value="">Seleccione una categoría</option>
 
                                 @foreach ($categorias as $categoria)
-                                <option value="{{ $categoria->id }}">
+                                <option value="{{ $categoria->id }}"
+                                    {{ old('id_categoria') == $categoria->id ? 'selected' : '' }}>
                                     {{ $categoria->nombre }}
                                 </option>
                                 @endforeach

@@ -11,19 +11,24 @@ class Producto extends Model
     use HasFactory;
 
     protected $table = 'producto';
+     
+    protected $primaryKey = 'id_producto';
+
+    public $timestamps = false;
+
 
     protected $fillable = [
         'nombre',
         'codigo',
         'precio',
         'stock',
-        'categoria_id',
+        'id_categoria',
         'descripcion'
     ];
 
     // 🔗 Relación con Categoría
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class, 'categoria_id');
+        return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 }
