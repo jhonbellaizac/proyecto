@@ -13,6 +13,14 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('menu')" :active="request()->routeIs('menu')">
+
+                        <x-nav-link :href="route('movimientos.index')"
+                            :active="request()->routeIs('movimientos.*')">
+
+                            Movimientos
+
+                        </x-nav-link>
+
                         {{ __('Inicio') }}
                     </x-nav-link>
                 </div>

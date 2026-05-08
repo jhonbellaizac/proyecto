@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\MovimientoController;
 
 
 
@@ -19,6 +20,14 @@ use App\Http\Controllers\ConfiguracionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::post('/movimientos', [MovimientoController::class, 'store'])
+    ->name('movimientos.store');
+    Route::get('/movimientos', [MovimientoController::class, 'index'])
+    ->name('movimientos.index');
+    Route::get('/movimientos/create', [MovimientoController::class, 'create'])
+    ->name('movimientos.create');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('config.index');
     Route::post('/configuracion', [ConfiguracionController::class, 'update'])->name('config.update');
@@ -41,5 +50,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('productos',ProductoController::class);
+/*Route::get('/productos/create', [ProductoController::class, 'create'])->name('productos.create');*/
 
 require __DIR__.'/auth.php';

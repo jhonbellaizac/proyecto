@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Marca extends Model
 {
-    protected $table = 'categorias';
+    protected $table = 'marcas';
 
     protected $fillable = [
         'nombre',
-        'descripcion',
-        'activo'
+        'descripcion'
     ];
 
     public function productos()

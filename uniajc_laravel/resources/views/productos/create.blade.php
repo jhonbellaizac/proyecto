@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container my-5">
+<div class="container-fluid my-5 px-10">
     <div class="row justify-content-center">
         <div class="col-lg-8">
 
@@ -57,7 +57,7 @@
                                     <input type="number" step="0.01" name="precio" id="precio"
                                         class="form-control"
                                         placeholder="Precio"
-                                        value="{{ old('precio') }}" 
+                                        value="{{ old('precio') }}"
                                         min="0"
                                         required>
                                     <label>Precio</label>
@@ -69,12 +69,38 @@
                                     <input type="number" name="stock" id="stock"
                                         class="form-control"
                                         placeholder="Cantidad"
-                                        value="{{ old('stock') }}" 
+                                        value="{{ old('stock') }}"
                                         min="0"
                                         required>
                                     <label>Cantidad en Stock</label>
                                 </div>
                             </div>
+                        </div>
+
+                        {{-- MARCA --}}
+                        <div class="form-floating mb-3">
+
+                            <select name="marca_id" class="form-select" required>
+
+                                <option value="">
+                                    Seleccione una marca
+                                </option>
+
+                                @foreach ($marcas as $marca)
+
+                                <option value="{{ $marca->id }}"
+                                    {{ old('marca_id') == $marca->id ? 'selected' : '' }}>
+
+                                    {{ $marca->nombre }}
+
+                                </option>
+
+                                @endforeach
+
+                            </select>
+
+                            <label>Marca</label>
+
                         </div>
 
                         {{-- CATEGORÍA --}}
@@ -84,7 +110,7 @@
 
                                 @foreach ($categorias as $categoria)
                                 <option value="{{ $categoria->id }}"
-                                    {{ old('id_categoria') == $categoria->id ? 'selected' : '' }}>
+                                    {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
                                     {{ $categoria->nombre }}
                                 </option>
                                 @endforeach

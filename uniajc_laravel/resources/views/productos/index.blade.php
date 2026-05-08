@@ -1,94 +1,255 @@
 @extends('layouts.app')
 
+@php
+use Illuminate\Support\Str;
+@endphp
+
 @section('content')
 
+<div class="container-fluid my-5 px-10">
 
-<div class="container my-5">
+    
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h1 class="mb-4">Productos Registrados</h1>
 
-    <a href="{{ route('productos.create') }}" class="btn btn-success mb-3">
-        + Nuevo Producto
-    </a>
 
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <h1 class="fw-bold">
+            Productos Registrados
+        </h1>
+
+        
+
+        <a href="{{ route('productos.create') }}"
+            class="btn btn-success">
+
+            + Nuevo Producto
+
+        </a>
+
+
     </div>
+
+    <div class="mb-3">
+
+            <input type="text"
+                id="buscador"
+                class="form-control"
+                placeholder="Buscar producto por ID, nombre, marca o código...">
+
+        </div>
+
+    {{-- MENSAJE SUCCESS --}}
+    @if (session('success'))
+
+    <div class="alert alert-success alert-dismissible fade show">
+
+        {{ session('success') }}
+
+        <button type="button"
+            class="btn-close"
+            data-bs-dismiss="alert">
+        </button>
+
+    </div>
+
     @endif
 
-    <div class="table-responsive">
-        <table class="table table-striped table-hover align-middle">
+    <div class="card shadow border-0">
 
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Código</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Categoría</th>
-                    <th class="text-center">Acciones</th>
-                </tr>
-            </thead>
+        <div class="card-body">
 
-            <tbody>
-                @forelse ($productos as $producto)
-                <tr>
-                    <td>{{ $producto->id_producto }}</td>
-                    <td>{{ $producto->nombre }}</td>
-                    <td>{{ $producto->codigo }}</td>
-                    <td>$ {{ number_format($producto->precio, 2) }}</td>
+            <div class="table-responsive">
 
-                    <td>
-                        @if($producto->stock <= 5)
-                            <span class="badge bg-danger">
-                                {{ $producto->stock }} (Bajo)
-                            </span>
-                        @else
-                            <span class="badge bg-success">
-                                {{ $producto->stock }}
-                            </span>
-                        @endif
-                    </td>
+                <table class="table table-hover align-middle">
 
-                    <td>
-                        {{ $producto->categoria->nombre ?? 'Sin categoría' }}
-                    </td>
+                    <thead class="table-dark">
 
-                    <td class="text-center">
-                        <a href="{{ route('productos.edit', $producto->id_producto) }}"
-                            class="btn btn-sm btn-warning me-2">
-                            Editar
-                        </a>
+                        <tr>
 
-                        <form action="{{ route('productos.destroy', $producto->id_producto) }}"
-                            method="POST"
-                            style="display:inline;">
-                            @csrf
-                            @method('DELETE')
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th>Código</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th class="text-center">Acciones</th>
 
-                            <button type="submit"
-                                class="btn btn-sm btn-danger"
-                                onclick="return confirm('¿Eliminar producto {{ $producto->nombre }}?')">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="7" class="text-center py-4">
-                        No hay productos registrados.
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
+                        </tr>
 
-        </table>
+                    </thead>
+
+
+
+                    <tbody id="tablaProductos">
+
+                        @forelse ($productos as $producto)
+
+
+
+                        <tr>
+
+                            {{-- ID --}}
+                            <td>
+                                {{ $producto->id_producto }}
+                            </td>
+
+                            {{-- NOMBRE --}}
+                            <td>
+                                {{ $producto->nombre }}
+                            </td>
+
+                            {{-- MARCA --}}
+                            <td>
+                                {{ $producto->marca->nombre ?? 'Sin marca' }}
+                            </td>
+
+                            {{-- CÓDIGO --}}
+                            <td>
+                                {{ $producto->codigo }}
+                            </td>
+
+                            {{-- PRECIO --}}
+                            <td>
+                                $ {{ number_format($producto->precio, 2) }}
+                            </td>
+
+                            {{-- STOCK --}}
+                            <td>
+
+                                @if($producto->stock <= 5)
+
+                                    <span class="badge bg-danger">
+                                    {{ $producto->stock }} (Bajo)
+                                    </span>
+
+
+
+                                    @else
+
+                                    <span class="badge bg-success">
+                                        {{ $producto->stock }}
+                                    </span>
+
+                                    @endif
+
+                            </td>
+
+                            {{-- CATEGORÍA --}}
+                            <td>
+                                {{ $producto->categoria->nombre ?? 'Sin categoría' }}
+                            </td>
+
+                            {{-- DESCRIPCIÓN --}}
+                            <td style="max-width: 250px;">
+                                {{ Str::limit($producto->descripcion, 50) }}
+                            </td>
+
+                            {{-- ACCIONES --}}
+                            <td class="text-center">
+
+                                {{-- EDITAR --}}
+                                <a href="{{ route('productos.edit', $producto->id_producto) }}"
+                                    class="btn btn-warning btn-sm me-2">
+
+                                    Editar
+
+                                </a>
+
+                                {{-- ELIMINAR --}}
+                                <form action="{{ route('productos.destroy', $producto->id_producto) }}"
+                                    method="POST"
+                                    class="d-inline">
+
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('¿Deseas eliminar este producto?')">
+
+                                        Eliminar
+
+                                    </button>
+
+
+                                </form>
+
+
+
+                            </td>
+
+
+
+                        </tr>
+
+
+
+
+
+                        @empty
+
+                        <tr>
+
+                            <td colspan="8" class="text-center text-muted">
+
+                                No hay productos registrados.
+
+                            </td>
+
+                        </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
+
+<script>
+function normalizar(texto) {
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+document.getElementById('buscador').addEventListener('keyup', function () {
+
+    let filtro = normalizar(this.value);
+    let filas = document.querySelectorAll("#tablaProductos tr");
+
+    filas.forEach(fila => {
+
+        let columnas = fila.querySelectorAll("td");
+
+        if (columnas.length === 0) return;
+
+        let id = normalizar(columnas[0].innerText);      // ID
+        let nombre = normalizar(columnas[1].innerText);  // Nombre
+        let marca = normalizar(columnas[2].innerText);   // Marca
+        let codigo = normalizar(columnas[3].innerText);  // Código
+
+        let textoBusqueda = id + " " + nombre + " " + marca + " " + codigo;
+
+        if (textoBusqueda.includes(filtro)) {
+            fila.style.display = "";
+        } else {
+            fila.style.display = "none";
+        }
+
+    });
+
+});
+</script>
 
 @endsection

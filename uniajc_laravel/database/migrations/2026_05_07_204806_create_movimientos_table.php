@@ -8,12 +8,26 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('producto_proveedor', function (Blueprint $table) {
+        Schema::create('movimientos', function (Blueprint $table) {
 
             $table->id();
 
+            // PRODUCTO
             $table->unsignedInteger('producto_id');
-            $table->unsignedBigInteger('proveedor_id');
+
+            // USUARIO
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onDelete('cascade');
+
+            // TIPO
+            $table->enum('tipo', ['entrada', 'salida']);
+
+            // CANTIDAD
+            $table->integer('cantidad');
+
+            // OBSERVACIÓN
+            $table->text('descripcion')->nullable();
 
             $table->timestamps();
 
@@ -22,17 +36,11 @@ return new class extends Migration
                   ->references('id_producto')
                   ->on('producto')
                   ->onDelete('cascade');
-
-            // RELACIÓN PROVEEDOR
-            $table->foreign('proveedor_id')
-                  ->references('id')
-                  ->on('provesors')
-                  ->onDelete('cascade');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('producto_proveedor');
+        Schema::dropIfExists('movimientos');
     }
 };
