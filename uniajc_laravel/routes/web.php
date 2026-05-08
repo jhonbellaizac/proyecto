@@ -39,7 +39,7 @@ Route::get('/', function () {
 
 Route::get('/menu', function () {
  //   return view('dashboard');
- $productos = Producto::all();
+ $productos = Producto::with('categoria')->get();
  return view('dashboard',compact ('productos'));
 })->middleware(['auth', 'verified'])->name('menu');
 
