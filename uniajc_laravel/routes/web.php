@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\VentaController;
 
 
 
@@ -33,6 +34,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/configuracion', [ConfiguracionController::class, 'update'])->name('config.update');
 });
 
+Route::get(
+    '/ventas/{id}/factura',
+    [VentaController::class, 'factura']
+)->name('ventas.factura');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -50,6 +56,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('productos',ProductoController::class);
+Route::resource('ventas', VentaController::class);
 /*Route::get('/productos/create', [ProductoController::class, 'create'])->name('productos.create');*/
 
 require __DIR__.'/auth.php';

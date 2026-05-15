@@ -11,13 +11,7 @@
         </h1>
         
 
-        <a href="{{ route('movimientos.create') }}"
-           class="btn btn-success">
-
-            + Nuevo Movimiento
-
-        </a>
-
+        
     </div>
 
     {{-- MENSAJE SUCCESS --}}

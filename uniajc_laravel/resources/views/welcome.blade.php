@@ -33,7 +33,7 @@
     <main class="max-w-7xl mx-auto px-4 py-20 flex flex-col lg:flex-row items-center gap-12">
 <div class="lg:w-1/2 space-y-6 text-center lg:text-left">
 <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-                Control inventaio<span class="text-black-600">MH</span>.
+                Control inventario<span class="text-black-600">MH</span>.
 </h1>
 
 <div class="pt-4">

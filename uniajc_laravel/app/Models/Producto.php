@@ -17,27 +17,25 @@ class Producto extends Model
     public $timestamps = false;
 
 
-    protected $primaryKey = 'id_producto';
-
     protected $fillable = [
         'marca_id',
         'nombre',
         'codigo',
         'precio',
         'stock',
-        'id_categoria',
+        'categoria_id',
         'descripcion'
     ];
 
     // 🔗 Relación con Categoría
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class, 'id_categoria');
+        return $this->belongsTo(Categoria::class, 'categoria_id');
     }
 
     public function marca()
     {
-        return $this->belongsTo(Marca::class);
+        return $this->belongsTo(Marca::class, 'marca_id');
     }
 
     public function movimientos()

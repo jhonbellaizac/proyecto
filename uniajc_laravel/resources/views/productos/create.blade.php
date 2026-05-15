@@ -105,7 +105,7 @@
 
                         {{-- CATEGORÍA --}}
                         <div class="form-floating mb-3">
-                            <select name="id_categoria" class="form-select" required>
+                            <select name="categoria_id" class="form-select" required>
                                 <option value="">Seleccione una categoría</option>
 
                                 @foreach ($categorias as $categoria)
