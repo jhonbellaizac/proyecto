@@ -39,7 +39,7 @@ class ProductoController extends Controller
                 'codigo' => 'required|unique:producto,codigo',
                 'precio' => 'required|numeric|min:0',
                 'stock' => 'required|integer|min:0',
-                'id_categoria' => 'required|exists:categorias,id'
+                'categoria_id' => 'required|exists:categorias,id'
             ],
             [
                 'precio.min' => 'El precio no puede ser negativo.',

@@ -25,35 +25,6 @@
 
 
 
-                    <div class="card-body">
-
-                        <form method="POST" action="{{ route('productos.update', $producto->id_producto) }}">
-                            @csrf
-                            @method('PUT')
-
-                            {{-- ERRORES --}}
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-
-                            {{-- NOMBRE Y CÓDIGO --}}
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" name="nombre"
-                                            class="form-control"
-                                            value="{{ old('nombre', $producto->nombre) }}"
-                                            required>
-                                        <label>Nombre del Producto</label>
-                                    </div>
-                                </div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('productos.update', $producto->id_producto) }}">
                         @csrf
@@ -81,6 +52,17 @@
                                     <label>Nombre del Producto</label>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="codigo"
+                                        class="form-control"
+                                        value="{{ old('codigo', $producto->codigo) }}"
+                                        required>
+                                    <label>Código / SKU</label>
+                                </div>
+                            </div>
+                        </div>
 
 
 
@@ -159,37 +141,10 @@
                                 <label>Categoría</label>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="number" name="stock"
-                                        class="form-control"
-                                        value="{{ old('stock', $producto->stock) }}"
-                                        min="0"
-                                        required>
-                                    <label>Cantidad en Stock</label>
-                                </div>
-                            </div>
-                        </div>
+                        
 
-                        {{-- CATEGORÍA --}}
-                        <div class="form-floating mb-3">
-                            <select name="id_categoria" class="form-select" required>
-                                <option value="">Seleccione una categoría</option>
-
-                                @foreach ($categorias as $categoria)
-                                <option value="{{ $categoria->id }}"
-                                    {{
-                                        (old('id_categoria') == $categoria->id) ||
-                                        ($producto->id_categoria == $categoria->id && old('id_categoria') == null)
-                                        ? 'selected' : ''
-                                    }}>
-                                    {{ $categoria->nombre }}
-                                </option>
-                                @endforeach
-
-                            </select>
-                            <label>Categoría</label>
-                        </div>
+                       
+                          
 
                         {{-- DESCRIPCIÓN --}}
                         <div class="form-floating mb-4">
